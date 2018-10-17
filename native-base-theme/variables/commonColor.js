@@ -16,7 +16,7 @@ export default {
   platform,
 
   //Accordion
-  headerStyle: "#008577",
+  headerStyle: "#2F673B",
   iconStyle: "#000",
   contentStyle: "#f5f4f5",
   expandedIconStyle: "#000",
@@ -105,7 +105,7 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: platform === "ios" ? "#008577" : "#008577",
+  brandPrimary: platform === "ios" ? "#2F673B" : "#2F673B",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#D81B60",
@@ -136,28 +136,28 @@ export default {
 
   // Footer
   footerHeight: 55,
-  footerDefaultBg: platform === "ios" ? "#F8F8F8" : "#008577",
+  footerDefaultBg: platform === "ios" ? "#F8F8F8" : "#2F673B",
   footerPaddingBottom: 0,
 
   // FooterTab
   tabBarTextColor: platform === "ios" ? "#737373" : "#bfc6ea",
   tabBarTextSize: platform === "ios" ? 14 : 11,
-  activeTab: platform === "ios" ? "#008577" : "#fff",
-  sTabBarActiveTextColor: "#008577",
+  activeTab: platform === "ios" ? "#2F673B" : "#fff",
+  sTabBarActiveTextColor: "#2F673B",
   tabBarActiveTextColor: platform === "ios" ? "#2874F0" : "#fff",
-  tabActiveBgColor: platform === "ios" ? "#cde1f9" : "#008577",
+  tabActiveBgColor: platform === "ios" ? "#cde1f9" : "#2F673B",
 
   // Header
-  toolbarBtnColor: platform === "ios" ? "#008577" : "#fff",
-  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "#008577",
+  toolbarBtnColor: platform === "ios" ? "#2F673B" : "#fff",
+  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "#2F673B",
   toolbarHeight: platform === "ios" ? 64 : 56,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
   toolbarInputColor: platform === "ios" ? "#CECDD2" : "#fff",
   searchBarHeight: platform === "ios" ? 30 : 40,
   searchBarInputHeight: platform === "ios" ? 30 : 50,
-  toolbarBtnTextColor: platform === "ios" ? "#008577" : "#fff",
+  toolbarBtnTextColor: platform === "ios" ? "#2F673B" : "#fff",
   iosStatusbar: "dark-content",
-  toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#008577",
+  toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#2F673B",
   get statusBarColor() {
     return color(this.toolbarDefaultBg)
       .darken(0.2)
@@ -202,7 +202,7 @@ export default {
   listItemPadding: platform === "ios" ? 10 : 12,
   listNoteColor: "#808080",
   listNoteSize: 13,
-  listItemSelected: platform === "ios" ? "#008577" : "#008577",
+  listItemSelected: platform === "ios" ? "#2F673B" : "#2F673B",
 
   // Progress Bar
   defaultProgressColor: "#E4202D",
@@ -210,19 +210,19 @@ export default {
 
   // Radio Button
   radioBtnSize: platform === "ios" ? 25 : 23,
-  radioSelectedColorAndroid: "#008577",
+  radioSelectedColorAndroid: "#2F673B",
   radioBtnLineHeight: platform === "ios" ? 29 : 24,
   get radioColor() {
     return this.brandPrimary;
   },
 
   // Segment
-  segmentBackgroundColor: platform === "ios" ? "#F8F8F8" : "#008577",
-  segmentActiveBackgroundColor: platform === "ios" ? "#008577" : "#fff",
-  segmentTextColor: platform === "ios" ? "#008577" : "#fff",
-  segmentActiveTextColor: platform === "ios" ? "#fff" : "#008577",
-  segmentBorderColor: platform === "ios" ? "#008577" : "#fff",
-  segmentBorderColorMain: platform === "ios" ? "#a7a6ab" : "#008577",
+  segmentBackgroundColor: platform === "ios" ? "#F8F8F8" : "#2F673B",
+  segmentActiveBackgroundColor: platform === "ios" ? "#2F673B" : "#fff",
+  segmentTextColor: platform === "ios" ? "#2F673B" : "#fff",
+  segmentActiveTextColor: platform === "ios" ? "#fff" : "#2F673B",
+  segmentBorderColor: platform === "ios" ? "#2F673B" : "#fff",
+  segmentBorderColorMain: platform === "ios" ? "#a7a6ab" : "#2F673B",
 
   // Spinner
   defaultSpinnerColor: "#45D56E",
@@ -231,9 +231,9 @@ export default {
   // Tab
   tabDefaultBg: platform === "ios" ? "#F8F8F8" : "#F8F8F8",
   topTabBarTextColor: platform === "ios" ? "#6b6b6b" : "#ddfffb",
-  topTabBarActiveTextColor: platform === "ios" ? "#008577" : "#fff",
+  topTabBarActiveTextColor: platform === "ios" ? "#2F673B" : "#fff",
   topTabBarBorderColor: platform === "ios" ? "#a7a6ab" : "#fff",
-  topTabBarActiveBorderColor: platform === "ios" ? "#008577" : "#fff",
+  topTabBarActiveBorderColor: platform === "ios" ? "#2F673B" : "#fff",
 
   // Tabs
   tabBgColor: "#F8F8F8",

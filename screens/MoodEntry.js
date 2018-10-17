@@ -22,17 +22,18 @@ export class MoodEntryComponent extends Component {
         super(props);
         const { moods, navigation: { getParam } } = props;
         const defaultId = guid();
-        const mood =
-            moods.find(m => m.id === getParam(MoodEntryComponent.MOOD_ID_ARG, defaultId)) ||
-            {
-                id: defaultId,
-                value: 4,
-                date: moment().toISOString()
-            }
+        const foundMood =
+            moods.find(m => m.id === getParam(MoodEntryComponent.MOOD_ID_ARG, defaultId))
+            
+        const mood = foundMood || {
+            id: defaultId,
+            value: 4,
+            date: moment().toISOString()
+        };
 
         this.state = {
             mood,
-            lastSavedMood: mood,
+            lastSavedMood: foundMood,
             initialMood: mood
         }
     }
