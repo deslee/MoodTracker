@@ -6,6 +6,7 @@ import { bindData } from '../hocs/bindData';
 import StarRating from 'react-native-star-rating';
 import moment from 'moment';
 import guid from '../helpers/guid';
+import commonColor from '../native-base-theme/variables/commonColor';
 
 export class MoodEntryComponent extends Component {
     static MOOD_ID_ARG = 'mood_id'
@@ -26,7 +27,8 @@ export class MoodEntryComponent extends Component {
             }
 
         this.state = {
-            mood
+            mood,
+            initialMood: mood
         }
     }
 
@@ -44,6 +46,8 @@ export class MoodEntryComponent extends Component {
                         maxStars={5}
                         containerStyle={{ width: 300, marginTop: 10 }}
                         rating={mood.value}
+                        fullStarColor={commonColor.brandDanger}
+                        emptyStarColor={commonColor.brandDanger}
                         selectedStar={(value) => this.setState({ mood: { ...mood, value } })}
                     />
                     <DatePicker
@@ -65,17 +69,26 @@ export class MoodEntryComponent extends Component {
                 </View>
 
                 <View style={{ flexDirection: 'row', flex: 0, justifyContent: 'space-between' }}>
-                    <Button onPress={() => {
-                        MoodTrackerManager.deleteMood(mood.id).then(() => {
-                            navigationService.goBack();
-                        })
-                    }}><Text>Delete</Text></Button>
+                    <Button
 
-                    <Button onPress={() => {
-                        MoodTrackerManager.saveMood(mood).then(() => {
-                            navigationService.goBack();
-                        })
-                    }}><Text>Save</Text></Button>
+                        style={{ backgroundColor: commonColor.brandDanger }}
+                        onPress={() => {
+                            MoodTrackerManager.deleteMood(mood.id).then(() => {
+                                navigationService.goBack();
+                            })
+                        }}>
+                        <Text>Delete</Text>
+                    </Button>
+
+                    <Button
+                        style={{ backgroundColor: commonColor.brandLight }}
+                        onPress={() => {
+                            MoodTrackerManager.saveMood(mood).then(() => {
+                                navigationService.goBack();
+                            })
+                        }}>
+                        <Text style={{color: commonColor.textColor}}>Save</Text>
+                    </Button>
                 </View>
             </Container>
         );

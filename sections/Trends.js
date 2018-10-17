@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text } from 'native-base';
+import { Text, View } from 'native-base';
 
 export default class Trends extends Component {
     render() {
-        return <Text>Coming soon</Text>
+        return <View style={{ padding: 15, flex: 1 }}><Text>Coming soon</Text></View>
     }
 }
