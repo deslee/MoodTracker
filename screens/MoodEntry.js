@@ -15,6 +15,9 @@ export class MoodEntryComponent extends Component {
         title: 'Edit Mood'
     };
 
+    _saveTimerId = undefined;
+    shouldUpdateState = true;
+
     constructor(props) {
         super(props);
         const { moods, navigation: { getParam } } = props;
@@ -29,8 +32,40 @@ export class MoodEntryComponent extends Component {
 
         this.state = {
             mood,
+            lastSavedMood: mood,
             initialMood: mood
         }
+    }
+
+    componentDidMount() {
+        this._saveTimerId = setInterval(this.saveChangesIfNeeded, 500)
+    }
+
+    componentWillUnmount() {
+        this.shouldUpdateState = false;
+        this.saveChangesIfNeeded();
+        if (this._saveTimerId) {
+            clearInterval(this._saveTimerId);
+            this._saveTimerId = undefined;
+        }
+    }
+
+    saveChangesIfNeeded = () => {
+        const { lastSavedMood, mood } = this.state
+        if(JSON.stringify(lastSavedMood) === JSON.stringify(mood)) {
+            return
+        } else {
+            this.saveMood();
+        }
+    }
+
+    saveMood = () => {
+        const { mood } = this.state
+        MoodTrackerManager.saveMood(mood).then(() => {
+            if (this.shouldUpdateState) {
+                this.setState({lastSavedMood: mood})
+            }
+        })
     }
 
     render() {
@@ -86,16 +121,6 @@ export class MoodEntryComponent extends Component {
                             })
                         }}>
                         <Text>Delete</Text>
-                    </Button>
-
-                    <Button
-                        style={{ backgroundColor: commonColor.brandLight }}
-                        onPress={() => {
-                            MoodTrackerManager.saveMood(mood).then(() => {
-                                navigationService.goBack();
-                            })
-                        }}>
-                        <Text style={{color: commonColor.textColor}}>Save</Text>
                     </Button>
                 </View>
             </Container>
