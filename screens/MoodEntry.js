@@ -7,6 +7,7 @@ import StarRating from 'react-native-star-rating';
 import moment from 'moment';
 import guid from '../helpers/guid';
 import commonColor from '../native-base-theme/variables/commonColor';
+import DateTimePicker from '../components/DateTimePicker';
 
 export class MoodEntryComponent extends Component {
     static MOOD_ID_ARG = 'mood_id'
@@ -50,16 +51,23 @@ export class MoodEntryComponent extends Component {
                         emptyStarColor={commonColor.brandDanger}
                         selectedStar={(value) => this.setState({ mood: { ...mood, value } })}
                     />
-                    <DatePicker
+                    <DateTimePicker
+                        textStyle={{
+                            marginTop: 10
+                        }}
+                        date={moment(mood.date).toDate()}
+                        onDateChange={date => this.setState({ mood: { ...mood, date: moment(date).toISOString() } })}
+                    />
+                    {/* <DatePicker
                         defaultDate={moment(mood.date).toDate()}
-                        formatChosenDate={(date) => MoodTrackerManager.getMoodDateText(date)}
+                        formatChosenDate={(date) => `${MoodTrackerManager.getMoodTimeText(date)} on ${MoodTrackerManager.getMoodDateText(date)}`}
                         locale={"en"}
                         textStyle={{
                             padding: 5, marginTop: 10, borderRadius: 4,
                             borderWidth: 0.5,
                         }}
                         onDateChange={date => this.setState({ mood: { ...mood, date: moment(date).toISOString() } })}
-                    />
+                    /> */}
                     <Textarea
                         placeholder="Notes"
                         value={mood.notes}

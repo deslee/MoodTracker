@@ -17,7 +17,8 @@ export default class MoodLog extends Component {
                                 <Body>
                                     <View>
                                         <H2>{MoodTrackerManager.getMoodText(mood.value)}</H2>
-                                        <Text>on {MoodTrackerManager.getMoodDateText(mood.date)}</Text>
+                                        <Text>{MoodTrackerManager.getMoodTimeText(mood.date)}</Text>
+                                        <Text>{MoodTrackerManager.getMoodDateText(mood.date)}</Text>
                                         <Text style={{ color: 'grey' }} numberOfLines={1}>
                                             {mood.notes}
                                         </Text>
