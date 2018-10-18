@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MoodTracker</string>
+    <string name="reminder_notification_channel">Reminders</string>
+    <string name="reminder_notification_description">Get regular reminders to check in</string>
 </resources>

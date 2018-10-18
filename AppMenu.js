@@ -3,6 +3,8 @@ import navigationService from './service/navigationService';
 import { Icon, View } from 'native-base';
 import Menu, { MenuItem } from 'react-native-material-menu';
 import commonColor from './native-base-theme/variables/commonColor';
+import { NativeModules } from 'react-native';
+
 
 export default class AppMenu extends React.Component {
     _menu = null;
@@ -21,6 +23,7 @@ export default class AppMenu extends React.Component {
 
     settingsPressed = () => {
         this.hideMenu();
+        NativeModules.CustomNotification.showReminderNotification('oshit', 'hey boi!!!')
         navigationService.navigate('Settings')
     }
 
