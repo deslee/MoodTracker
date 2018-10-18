@@ -13,6 +13,7 @@
     "react-native": "0.57.3",
     "react-native-material-menu": "^0.4.1",
     "react-native-modal-datetime-picker": "^6.0.0",
+    "react-native-push-notification": "^3.1.2",
     "react-native-star-rating": "^1.1.0",
     "react-native-vector-icons": "^6.0.2",
     "react-navigation": "^2.18.0"

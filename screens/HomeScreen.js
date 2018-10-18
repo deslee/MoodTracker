@@ -3,9 +3,9 @@ import { Container, Icon, Tabs, Tab, Fab } from 'native-base';
 import MoodLog from '../sections/MoodLog';
 import AppMenu from '../AppMenu';
 import { bindData } from '../hocs/bindData';
-import navigationService from '../service/navigationService';
 import Trends from '../sections/Trends';
 import commonColor from '../native-base-theme/variables/commonColor';
+import { MoodEntryComponent } from './MoodEntry';
 
 export class HomeScreenComponent extends Component {
     static navigationOptions = {
@@ -30,20 +30,20 @@ export class HomeScreenComponent extends Component {
     }
 
     render() {
-        const { moods } = this.props;
+        const { moods, navigation: { navigate } } = this.props;
         const { showAddMoodButton } = this.state
         return (
             <Container>
                 <Tabs onChangeTab={this.tabChanged}>
                     <Tab heading="Log">
-                        <MoodLog moods={moods} />
+                        <MoodLog moods={moods} onSelectMood={(id) => navigate('MoodEntry', {[MoodEntryComponent.MOOD_ID_ARG]: id})} />
                     </Tab>
                     <Tab heading="Trends">
                         <Trends moods={moods} />
                     </Tab>
                 </Tabs>
                 {showAddMoodButton && <Fab
-                    onPress={() => navigationService.navigate('MoodEntry')}
+                    onPress={() => navigate('MoodEntry')}
                     style={{ backgroundColor: commonColor.brandDanger }}>
                     <Icon name="add" />
                 </Fab>}

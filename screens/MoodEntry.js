@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Text, Button, H2, DatePicker, Textarea, View } from 'native-base';
 import MoodTrackerManager from '../service/MoodTrackerManager';
-import navigationService from '../service/navigationService';
 import { bindData } from '../hocs/bindData';
 import StarRating from 'react-native-star-rating';
 import moment from 'moment';
@@ -70,6 +69,7 @@ export class MoodEntryComponent extends Component {
     }
 
     render() {
+        const { navigation: { goBack } } = this.props;
         const { mood } = this.state;
 
         return (
@@ -118,7 +118,7 @@ export class MoodEntryComponent extends Component {
                         style={{ backgroundColor: commonColor.brandDanger }}
                         onPress={() => {
                             MoodTrackerManager.deleteMood(mood.id).then(() => {
-                                navigationService.goBack();
+                                goBack();
                             })
                         }}>
                         <Text>Delete</Text>

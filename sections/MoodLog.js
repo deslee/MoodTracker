@@ -3,17 +3,16 @@ import { ScrollView } from 'react-native';
 import { Text, Body, Icon, H2, List, ListItem, Right, View } from 'native-base';
 import MoodTrackerManager from '../service/MoodTrackerManager';
 import { MoodEntryComponent } from '../screens/MoodEntry';
-import navigationService from '../service/navigationService';
 
 export default class MoodLog extends Component {
     render() {
-        const { moods } = this.props;
+        const { moods, onSelectMood } = this.props;
         return (
             <View>
                 <ScrollView>
                     <List>
                         {moods.map((mood) =>
-                            <ListItem key={mood.id} onPress={() => navigationService.navigate('MoodEntry', {[MoodEntryComponent.MOOD_ID_ARG]: mood.id})} >
+                            <ListItem key={mood.id} onPress={() => onSelectMood(mood.id)} >
                                 <Body>
                                     <View>
                                         <H2>{MoodTrackerManager.getMoodText(mood.value)}</H2>
