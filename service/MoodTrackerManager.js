@@ -59,6 +59,16 @@ export class Manager {
         return moment(date).format("dddd, MMMM Do YYYY")
     }
 
+    getSettings = () => {
+        return this.storage.getItem(`${key}:settings`)
+            .then(settings => JSON.parse((settings || '[]')))
+    }
+
+    saveSettings = (settings) => {
+        return this.storage.setItem(`${key}:settings`, JSON.stringify(settings))
+            .then(() => this.notifyObservers());
+    }
+
     notifyObservers = () => {
         this.observers.forEach(obs => {
             obs.fn();
@@ -84,12 +94,4 @@ export class Manager {
 
 let manager = new Manager(AsyncStorage);
 
-export default {
-    deleteMood: manager.deleteMood,
-    saveMood: manager.saveMood,
-    getAllMoods: manager.getAllMoods,
-    getMoodText: manager.getMoodText,
-    getMoodTimeText: manager.getMoodTimeText,
-    getMoodDateText: manager.getMoodDateText,
-    addObserver: manager.addObserver
-}
+export default manager;

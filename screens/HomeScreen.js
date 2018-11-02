@@ -5,6 +5,8 @@ import AppMenu from '../AppMenu';
 import { bindData } from '../hocs/bindData';
 import Trends from '../sections/Trends';
 import commonColor from '../native-base-theme/variables/commonColor';
+import PushNotification from 'react-native-push-notification'
+import { PushNotificationIOS } from 'react-native';
 import { MoodEntryComponent } from './MoodEntry';
 
 export class HomeScreenComponent extends Component {
@@ -28,7 +30,31 @@ export class HomeScreenComponent extends Component {
     }
 
     componentDidMount() {
-        const { navigation: { setParams } } = this.props;
+        const { navigation: { navigate } } = this.props;
+
+
+
+        PushNotification.configure({
+            // (optional) Called when Token is generated (iOS and Android)
+            onRegister: function (token) {
+                // console.log( 'TOKEN:', token );
+            },
+
+            // (required) Called when a remote or local notification is opened or received
+            onNotification: function (notification) {
+                // console.log('NOTIFICATION:', notification);
+
+                // process the notification
+
+                if (notification.message === 'Time to log an entry for today.') {
+                    navigate('MoodEntry')
+                }
+
+                // required on iOS only (see fetchCompletionHandler docs: https://facebook.github.io/react-native/docs/pushnotificationios.html)
+                notification.finish(PushNotificationIOS.FetchResult.NoData);
+            },
+            popInitialNotification: true
+        })
     }
 
     render() {

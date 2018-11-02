@@ -22,9 +22,10 @@ export const bindData = (BoundComponent) => {
         }
 
         update = () => {
-            MoodTrackerManager.getAllMoods().then(moods => this.setState({
+            Promise.all([MoodTrackerManager.getAllMoods(), MoodTrackerManager.getSettings()]).then(([moods, settings]) => this.setState({
                 data: {
-                    moods
+                    moods,
+                    settings
                 }
             }));
         }
