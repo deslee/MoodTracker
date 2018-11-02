@@ -8,16 +8,14 @@ import commonColor from '../native-base-theme/variables/commonColor';
 import { MoodEntryComponent } from './MoodEntry';
 
 export class HomeScreenComponent extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         title: 'Moodtracker',
-        headerRight: (
-            <AppMenu />
-        ),
         headerStyle: {
             backgroundColor: commonColor.btnPrimaryBg,
             elevation: 0
-        }
-    };
+        },
+        headerRight: <AppMenu navigation={navigation} />
+    });
 
     state = {
         showAddMoodButton: true
@@ -29,6 +27,10 @@ export class HomeScreenComponent extends Component {
         })
     }
 
+    componentDidMount() {
+        const { navigation: { setParams } } = this.props;
+    }
+
     render() {
         const { moods, navigation: { navigate } } = this.props;
         const { showAddMoodButton } = this.state
@@ -36,7 +38,7 @@ export class HomeScreenComponent extends Component {
             <Container>
                 <Tabs onChangeTab={this.tabChanged}>
                     <Tab heading="Log">
-                        <MoodLog moods={moods} onSelectMood={(id) => navigate('MoodEntry', {[MoodEntryComponent.MOOD_ID_ARG]: id})} />
+                        <MoodLog moods={moods} onSelectMood={(id) => navigate('MoodEntry', { [MoodEntryComponent.MOOD_ID_ARG]: id })} />
                     </Tab>
                     <Tab heading="Trends">
                         <Trends moods={moods} />
