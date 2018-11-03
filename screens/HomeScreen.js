@@ -25,7 +25,7 @@ export class HomeScreenComponent extends Component {
 
     tabChanged = ({ i }) => {
         this.setState({
-            tabIndex: 1
+            tabIndex: i
         })
     }
 
