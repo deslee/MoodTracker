@@ -20,12 +20,12 @@ export class HomeScreenComponent extends Component {
     });
 
     state = {
-        showAddMoodButton: true
+        tabIndex: 0
     }
 
     tabChanged = ({ i }) => {
         this.setState({
-            showFab: i === 0
+            tabIndex: 1
         })
     }
 
@@ -59,10 +59,10 @@ export class HomeScreenComponent extends Component {
 
     render() {
         const { moods, navigation: { navigate } } = this.props;
-        const { showAddMoodButton } = this.state
+        const { tabIndex } = this.state
         return (
             <Container>
-                <Tabs onChangeTab={this.tabChanged}>
+                <Tabs locked={tabIndex === 1} onChangeTab={this.tabChanged}>
                     <Tab heading="Log">
                         <MoodLog moods={moods} onSelectMood={(id) => navigate('MoodEntry', { [MoodEntryComponent.MOOD_ID_ARG]: id })} />
                     </Tab>
@@ -70,7 +70,7 @@ export class HomeScreenComponent extends Component {
                         <Trends moods={moods} />
                     </Tab>
                 </Tabs>
-                {showAddMoodButton && <Fab
+                {tabIndex === 0 && <Fab
                     onPress={() => navigate('MoodEntry')}
                     style={{ backgroundColor: commonColor.brandDanger }}>
                     <Icon name="add" />
